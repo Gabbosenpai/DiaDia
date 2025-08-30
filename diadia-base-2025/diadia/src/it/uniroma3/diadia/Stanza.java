@@ -1,9 +1,5 @@
 package it.uniroma3.diadia;
 
-
-
-
-
 /**
  * Classe Stanza - una stanza in un gioco di ruolo.
  * Una stanza e' un luogo fisico nel gioco.
@@ -52,12 +48,12 @@ public class Stanza {
     public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
         boolean aggiornato = false;
     	for(int i=0; i<this.direzioni.length; i++)
-        	if (direzione.equals(this.direzioni[i])) {
+        	if (direzione != null && stanza != null && direzione.equals(this.direzioni[i])) {
         		this.stanzeAdiacenti[i] = stanza;
         		aggiornato = true;
         	}
     	if (!aggiornato)
-    		if (this.numeroStanzeAdiacenti < NUMERO_MASSIMO_DIREZIONI) {
+    		if (direzione != null && stanza != null && this.numeroStanzeAdiacenti < NUMERO_MASSIMO_DIREZIONI) {
     			this.direzioni[numeroStanzeAdiacenti] = direzione;
     			this.stanzeAdiacenti[numeroStanzeAdiacenti] = stanza;
     		    this.numeroStanzeAdiacenti++;
@@ -106,7 +102,7 @@ public class Stanza {
      * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
      */
     public boolean addAttrezzo(Attrezzo attrezzo) {
-        if (this.numeroAttrezzi < NUMERO_MASSIMO_ATTREZZI) {
+        if (attrezzo != null && this.numeroAttrezzi < NUMERO_MASSIMO_ATTREZZI) {
         	this.attrezzi[numeroAttrezzi] = attrezzo;
         	this.numeroAttrezzi++;
         	return true;
@@ -144,7 +140,7 @@ public class Stanza {
 		boolean trovato;
 		trovato = false;
 		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
+			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
 				trovato = true;
 		}
 		return trovato;
@@ -183,5 +179,16 @@ public class Stanza {
 	    	direzioni[i] = this.direzioni[i];
 	    return direzioni;
     }
+	
+	public int getNumeroStanzeAdiacenti() {
+		return this.numeroStanzeAdiacenti;
+	}
+	
+	public int getNumeroAttrezzi() {
+		return this.numeroAttrezzi;
+	}
 
+	public void setNumeroAttrezzi(int numeroAttrezzi) {
+		this.numeroAttrezzi = numeroAttrezzi;
+	}
 }

@@ -1,9 +1,5 @@
 package it.uniroma3.diadia;
 
-
-
-
-
 /**
  * Questa classe modella una partita del gioco
  *
@@ -25,6 +21,7 @@ public class Partita {
 		this.finita = false;
 		this.cfu = CFU_INIZIALI;
 		this.labirinto = new Labirinto();
+		this.stanzaCorrente = this.labirinto.getStanzaIngresso();
 	}
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
@@ -40,7 +37,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente()== this.labirinto.getStanzaVincente();
+		return this.getStanzaCorrente() == this.labirinto.getStanzaVincente();
 	}
 
 	/**
@@ -66,4 +63,12 @@ public class Partita {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;		
 	}	
+	
+	public Labirinto getLabirinto() {
+		return this.labirinto;
+	}
+	
+	public void setLabirinto(Labirinto labirinto) {
+		this.labirinto = labirinto;
+	}
 }
