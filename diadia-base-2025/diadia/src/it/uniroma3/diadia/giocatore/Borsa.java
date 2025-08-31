@@ -3,23 +3,23 @@ package it.uniroma3.diadia.giocatore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Borsa {
-	
+
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
-	
+
 	private Attrezzo[] attrezzi;
 	private int numeroAttrezzi;
 	private int pesoMax;
-	
+
 	public Borsa() {
 		this(DEFAULT_PESO_MAX_BORSA);
 	}
-	
+
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
-	
+
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
@@ -29,11 +29,11 @@ public class Borsa {
 		this.numeroAttrezzi++;
 		return true;
 	}
-	
+
 	public int getPesoMax() {
 		return pesoMax;
 	}
-	
+
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -41,28 +41,53 @@ public class Borsa {
 				a = attrezzi[i];
 		return a;
 	}
-	
+
 	public int getPeso() {
 		int peso = 0;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
 			peso += this.attrezzi[i].getPeso();
 		return peso;
 	}
-	
+
 	public boolean isEmpty() {
 		return this.numeroAttrezzi == 0;
 	}
-	
+
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
-	
+
+	//	/*Versione meno efficente, si scorre tutto l'array e se ci sono
+	//	due attrezzi con lo stesso nome, rimuove l'ultimo trovato*/
+	//	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
+	//		Attrezzo attrezzoDaRimuovere = null;
+	//		int indice = 0;
+	//		for(Attrezzo attrezzo : this.attrezzi) {
+	//			if(attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo)) {
+	//				attrezzoDaRimuovere = attrezzo;
+	//				this.attrezzi[indice] = null;
+	//			}
+	//			indice++;
+	//		}
+	//		return attrezzoDaRimuovere;
+	//	}
+
+	/*Versione più efficente, si scorre l'array finchè non
+	  trova l'attrezzo con un certo nome, poi lo rimuove*/
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
-		Attrezzo a = null;
-		// ---> TODO (implementare questo metodo) <---
-		return a;
+		Attrezzo attrezzoDaRimuovere = null;
+		int i = 0; //indice di scorrimento
+		while(attrezzoDaRimuovere == null && i < this.attrezzi.length) {
+			if(this.attrezzi[i] != null && this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
+				attrezzoDaRimuovere = this.attrezzi[i];
+				this.attrezzi[i]= null;
+			}
+			i++;
+		}
+		return attrezzoDaRimuovere;
 	}
-	
+
+
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		if (!this.isEmpty()) {
