@@ -21,6 +21,8 @@ public class Borsa {
 	}
 
 	public boolean addAttrezzo(Attrezzo attrezzo) {
+		if(attrezzo == null)
+			return false;
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
 		if (this.numeroAttrezzi==10)
@@ -34,6 +36,18 @@ public class Borsa {
 		return pesoMax;
 	}
 
+	public void setPesoMax(int pesoMax) {
+		this.pesoMax = pesoMax;
+	}
+
+	public int getNumeroAttrezzi() {
+		return this.numeroAttrezzi;
+	}
+
+	public void setNumeroAttrezzi(int numeroAttrezzi) {
+		this.numeroAttrezzi = numeroAttrezzi;
+	}
+
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -45,7 +59,8 @@ public class Borsa {
 	public int getPeso() {
 		int peso = 0;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
-			peso += this.attrezzi[i].getPeso();
+			if(this.attrezzi[i] != null)
+				peso += this.attrezzi[i].getPeso();
 		return peso;
 	}
 

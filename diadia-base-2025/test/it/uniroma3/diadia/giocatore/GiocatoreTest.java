@@ -17,18 +17,18 @@ class GiocatoreTest {
 	}
 	
 	@Test
-	void testIsVivoInizioPartita() {
+	public void testIsVivoInizioPartita() {
 		assertTrue(this.giocatore.isVivo());
 	}
 	
 	@Test
-	void testIsVivoCfuEsauriti() {
+	public void testIsVivoCfuEsauriti() {
 		this.giocatore.setCfu(0);
 		assertFalse(this.giocatore.isVivo());
 	}
 	
 	@Test
-	void testInizializzazioneNumeroCfuCorretto() {
+	public void testInizializzazioneNumeroCfuCorretto() {
 		assertEquals(this.giocatore.getCfuIniziali(), this.giocatore.getCfu());
 	}
 
