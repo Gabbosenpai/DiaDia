@@ -14,7 +14,7 @@ public class Giocatore {
 	}
 	
 	public boolean isVivo() {
-		return this.cfu == 0;
+		return this.cfu > 0;
 	}
 	
 	public int getCfu() {
@@ -31,5 +31,9 @@ public class Giocatore {
 	
 	public void setBorsa(Borsa borsa) {
 		this.borsa = borsa;
+	}
+	
+	public int getCfuIniziali() {
+		return Giocatore.CFU_INIZIALI;
 	}
 }
