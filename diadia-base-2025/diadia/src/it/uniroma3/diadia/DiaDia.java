@@ -3,6 +3,7 @@ package it.uniroma3.diadia;
 import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -28,7 +29,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 
 	private Partita partita;
 
@@ -70,6 +71,10 @@ public class DiaDia {
 			return true;
 		} else if (comandoDaEseguire.getNome().equals("vai"))
 			this.vai(comandoDaEseguire.getParametro());
+		else if (comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
+		else if (comandoDaEseguire.getNome().equals("posa"))
+			this.posa(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
 		else
@@ -112,6 +117,7 @@ public class DiaDia {
 		}
 		System.out.println("CFU rimasti: " + partita.getGiocatore().getCfu());
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
+		System.out.println(partita.getGiocatore().getBorsa().toString());
 	}
 
 	/**
@@ -119,6 +125,29 @@ public class DiaDia {
 	 */
 	private void fine() {
 		System.out.println("Grazie di aver giocato!");  // si desidera smettere
+	}
+	
+	private void prendi(String nomeAttrezzo) {
+		if(nomeAttrezzo == null) {
+			System.out.println("Cosa vuoi prendere?");
+			return;
+		}
+		if(!this.partita.getStanzaCorrente().hasAttrezzo(nomeAttrezzo)) {
+			System.out.println("L'attrezzo " + nomeAttrezzo + " non c'è nella stanza!");
+			return;
+		}
+		Attrezzo a = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		if(this.partita.getGiocatore().getBorsa().addAttrezzo(a)) {
+			this.partita.getStanzaCorrente().removeAttrezzo(a);
+			System.out.println("Attrezzo " + nomeAttrezzo + " preso!");
+		}
+		else {
+			System.out.println("Non c'è spazio nella borsa!");
+		}
+	}
+	
+	public void posa(String nomeAttrezzo) {
+		return;
 	}
 
 	public static void main(String[] argc) {
