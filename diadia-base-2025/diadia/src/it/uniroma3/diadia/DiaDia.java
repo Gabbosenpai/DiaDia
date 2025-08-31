@@ -54,7 +54,7 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
 
-		if(this.partita.getCfu() == 0) {
+		if(this.partita.getGiocatore().getCfu() == 0) {
 			System.out.println("CFU terminati!");
 			this.fine();
 			return true;
@@ -104,11 +104,11 @@ public class DiaDia {
 				System.out.println("Direzione inesistente");
 			else {
 				this.partita.setStanzaCorrente(prossimaStanza);
-				int cfu = this.partita.getCfu();
-				this.partita.setCfu(--cfu);
+				int cfu = this.partita.getGiocatore().getCfu();
+				this.partita.getGiocatore().setCfu(--cfu);
 			}
 		}
-		System.out.println("CFU rimasti: " + partita.getCfu());
+		System.out.println("CFU rimasti: " + partita.getGiocatore().getCfu());
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
 
