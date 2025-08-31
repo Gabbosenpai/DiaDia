@@ -28,7 +28,7 @@ public class DiaDia {
 			"puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n" +
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
-	
+
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 
 	private Partita partita;
@@ -126,7 +126,7 @@ public class DiaDia {
 	private void fine() {
 		System.out.println("Grazie di aver giocato!");  // si desidera smettere
 	}
-	
+
 	private void prendi(String nomeAttrezzo) {
 		if(nomeAttrezzo == null) {
 			System.out.println("Cosa vuoi prendere?");
@@ -145,9 +145,24 @@ public class DiaDia {
 			System.out.println("Non c'è spazio nella borsa!");
 		}
 	}
-	
+
 	public void posa(String nomeAttrezzo) {
-		return;
+		if(nomeAttrezzo == null) {
+			System.out.println("Cosa vuoi posare?");
+			return;
+		}
+		if(!this.partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzo)) {
+			System.out.println("L'attrezzo " + nomeAttrezzo + " non c'è nella borsa!");
+			return;
+		}
+		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
+		if(this.partita.getStanzaCorrente().addAttrezzo(a)) {
+			this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
+			System.out.println("Attrezzo " + nomeAttrezzo + " posato!");
+		}
+		else {
+			System.out.println("Non c'è spazio nella stanza!");
+		}
 	}
 
 	public static void main(String[] argc) {
