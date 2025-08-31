@@ -2,6 +2,8 @@ package it.uniroma3.diadia;
 
 import java.util.Scanner;
 
+import it.uniroma3.diadia.ambienti.Stanza;
+
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
@@ -54,7 +56,7 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
 
-		if(this.partita.getCfu() == 0) {
+		if(this.partita.getGiocatore().getCfu() == 0) {
 			System.out.println("CFU terminati!");
 			this.fine();
 			return true;
@@ -104,11 +106,11 @@ public class DiaDia {
 				System.out.println("Direzione inesistente");
 			else {
 				this.partita.setStanzaCorrente(prossimaStanza);
-				int cfu = this.partita.getCfu();
-				this.partita.setCfu(--cfu);
+				int cfu = this.partita.getGiocatore().getCfu();
+				this.partita.getGiocatore().setCfu(--cfu);
 			}
 		}
-		System.out.println("CFU rimasti: " + partita.getCfu());
+		System.out.println("CFU rimasti: " + partita.getGiocatore().getCfu());
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
 

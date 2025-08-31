@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.Stanza;
+
 class PartitaTest {
 
 	private Partita partita;
@@ -51,7 +53,7 @@ class PartitaTest {
 	
 	@Test
 	public void testIsFinitaCfuEsauriti() {
-		this.partita.setCfu(0);
+		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
 	}
 	
