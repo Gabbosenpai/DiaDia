@@ -20,52 +20,134 @@ class BorsaTest {
 	}
 	
 	@Test
-	void testIsEmptyConBorsaVuota() {
+	public void testIsEmptyConBorsaVuota() {
 		assertTrue(this.borsa.isEmpty());
 	}
 	
 	@Test
-	void testIsEmptyConBorsaNonVuota() {
+	public void testIsEmptyConBorsaNonVuota() {
 		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
 		assertFalse(this.borsa.isEmpty());
 	}
 	
 	@Test
-	void testHasAttrezzoConBorsaVuota() {
+	public void testHasAttrezzoConBorsaVuota() {
 		assertFalse(this.borsa.hasAttrezzo("pigna"));
 	}
 	
 	@Test
-	void testHasAttrezzoConAttrezzoPresente() {
+	public void testHasAttrezzoConAttrezzoPresente() {
 		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
 		assertTrue(this.borsa.hasAttrezzo("pigna"));
 	}
 	
 	@Test
-	void testHasAttrezzoConAttrezzoDiverso() {
+	public void testHasAttrezzoConAttrezzoDiverso() {
 		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
 		assertFalse(this.borsa.hasAttrezzo("ghianda"));
 	}
 	
 	@Test
-	void testGetAttrezzoSuNull() {
+	public void testGetAttrezzoSuNull() {
 		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
 		assertNull(this.borsa.getAttrezzo(null));
 	}
 	
 	@Test
-	void testGetAttrezzoSuccesso() {
+	public void testGetAttrezzoSuccesso() {
 		Attrezzo pigna = new Attrezzo("pigna", 1);
 		this.borsa.addAttrezzo(pigna);
 		assertEquals(pigna, this.borsa.getAttrezzo("pigna"));
 	}
 	
 	@Test
-	void testGetAttrezzoAssente() {
+	public void testGetAttrezzoAssente() {
 		Attrezzo pigna = new Attrezzo("pigna", 1);
 		this.borsa.addAttrezzo(pigna);
 		assertNull(this.borsa.getAttrezzo("ghianda"));
 	}
 	
-
+	@Test
+	public void testAddAttrezzoSuNull() {
+		this.borsa.addAttrezzo(null);
+		assertEquals(0, this.borsa.getNumeroAttrezzi());
+	}
+	
+	@Test
+	public void testAddAttrezzoPesoMaggiorePesoMax() {
+		this.borsa.addAttrezzo(new Attrezzo("incudine", this.borsa.getPesoMax() + 1));
+		assertFalse(this.borsa.hasAttrezzo("incudine"));
+		this.borsa.addAttrezzo(new Attrezzo("martello", 7));
+		this.borsa.addAttrezzo(new Attrezzo("spada", 4));
+		assertFalse(this.borsa.hasAttrezzo("spada"));
+		assertTrue(this.borsa.hasAttrezzo("martello"));
+	}
+	
+	@Test
+	public void testAddAttrezzoBorsaPienaMaxNumeroAttrezzi() {
+		this.borsa.setNumeroAttrezzi(9);
+		this.borsa.addAttrezzo(new Attrezzo("martello", 7));
+		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
+		assertFalse(this.borsa.hasAttrezzo("pigna"));
+		assertTrue(this.borsa.hasAttrezzo("martello"));
+	}
+	
+	@Test
+	public void testAddAttrezzoSingolo() {
+		this.borsa.addAttrezzo(new Attrezzo("pigna",1));
+		assertTrue(this.borsa.hasAttrezzo("pigna"));
+	}
+	
+	@Test
+	public void testGetPesoBorsaVuota() {
+		assertEquals(0, this.borsa.getPeso());
+	}
+	
+	@Test
+	public void testGetPesoBorsaAttrezzoSingolo() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		this.borsa.addAttrezzo(pigna);
+		assertEquals(pigna.getPeso(), this.borsa.getPeso());
+	}
+	
+	@Test
+	public void testGetPesoBorsaAttrezzoDoppio() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		Attrezzo ghianda = new Attrezzo("ghianda", 2);
+		this.borsa.addAttrezzo(pigna);
+		this.borsa.addAttrezzo(ghianda);
+		assertEquals(pigna.getPeso() + ghianda.getPeso(), this.borsa.getPeso());
+	}
+	
+	@Test
+	public void testRemoveAttrezzoSuNull() {
+		assertNull(this.borsa.removeAttrezzo(null));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoAssente() {
+		assertNull(this.borsa.removeAttrezzo("pigna"));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoPresente() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		this.borsa.addAttrezzo(pigna);
+		assertTrue(this.borsa.hasAttrezzo("pigna"));
+		assertEquals(pigna, this.borsa.removeAttrezzo("pigna"));
+		assertFalse(this.borsa.hasAttrezzo("pigna"));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoConPiùAttrezzi() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		Attrezzo ghianda = new Attrezzo("ghianda", 2);
+		this.borsa.addAttrezzo(pigna);
+		this.borsa.addAttrezzo(ghianda);
+		assertTrue(this.borsa.hasAttrezzo("pigna"));
+		assertTrue(this.borsa.hasAttrezzo("ghianda"));
+		assertEquals(pigna, this.borsa.removeAttrezzo("pigna"));
+		assertFalse(this.borsa.hasAttrezzo("pigna"));
+		assertTrue(this.borsa.hasAttrezzo("ghianda"));
+	}
 }
