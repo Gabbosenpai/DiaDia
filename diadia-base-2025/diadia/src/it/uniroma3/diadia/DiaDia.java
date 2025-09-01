@@ -2,6 +2,9 @@ package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.FabbricaDiComandi;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -53,34 +56,46 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire = new Comando(istruzione);
-
-		if(comandoDaEseguire.getNome() == null) {
-			this.io.mostraMessaggio("Comando sconosciuto");
+		Comando comandoDaEseguire;
+		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		comandoDaEseguire = factory.costruisciComando(istruzione);
+		comandoDaEseguire.esegui(this.partita);
+		if (this.partita.vinta())
+			System.out.println("Hai vinto!");
+		if (!this.partita.getGiocatore().isVivo())
+			System.out.println("Hai esaurito i CFU...");
+		return this.partita.isFinita();
 		}
-		else if (comandoDaEseguire.getNome().equals("fine")) {
-			this.fine(); 
-			return true;
-		} else if (comandoDaEseguire.getNome().equals("vai"))
-			this.vai(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("prendi"))
-			this.prendi(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("posa"))
-			this.posa(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("aiuto"))
-			this.aiuto();
-		else
-			this.io.mostraMessaggio("Comando sconosciuto");
-		if (this.partita.vinta()) {
-			this.io.mostraMessaggio("Hai vinto!");
-			return true;
-		} else if(this.partita.isFinita()) {
-			this.io.mostraMessaggio("CFU terminati!");
-			return true;
-		}
-		else
-			return false;
-	}   
+	
+//	private boolean processaIstruzione1(String istruzione) {
+//		Comando comandoDaEseguire = new Comando(istruzione);
+//
+//		if(comandoDaEseguire.getNome() == null) {
+//			this.io.mostraMessaggio("Comando sconosciuto");
+//		}
+//		else if (comandoDaEseguire.getNome().equals("fine")) {
+//			this.fine(); 
+//			return true;
+//		} else if (comandoDaEseguire.getNome().equals("vai"))
+//			this.vai(comandoDaEseguire.getParametro());
+//		else if (comandoDaEseguire.getNome().equals("prendi"))
+//			this.prendi(comandoDaEseguire.getParametro());
+//		else if (comandoDaEseguire.getNome().equals("posa"))
+//			this.posa(comandoDaEseguire.getParametro());
+//		else if (comandoDaEseguire.getNome().equals("aiuto"))
+//			this.aiuto();
+//		else
+//			this.io.mostraMessaggio("Comando sconosciuto");
+//		if (this.partita.vinta()) {
+//			this.io.mostraMessaggio("Hai vinto!");
+//			return true;
+//		} else if(this.partita.isFinita()) {
+//			this.io.mostraMessaggio("CFU terminati!");
+//			return true;
+//		}
+//		else
+//			return false;
+//	}   
 
 	// implementazioni dei comandi dell'utente:
 
