@@ -55,12 +55,6 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
 
-		if(this.partita.getGiocatore().getCfu() == 0) {
-			this.io.mostraMessaggio("CFU terminati!");
-			this.fine();
-			return true;
-		}
-
 		if(comandoDaEseguire.getNome() == null) {
 			this.io.mostraMessaggio("Comando sconosciuto");
 		}
@@ -80,7 +74,11 @@ public class DiaDia {
 		if (this.partita.vinta()) {
 			this.io.mostraMessaggio("Hai vinto!");
 			return true;
-		} else
+		} else if(this.partita.isFinita()) {
+			this.io.mostraMessaggio("CFU terminati!");
+			return true;
+		}
+		else
 			return false;
 	}   
 
