@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
@@ -19,6 +20,7 @@ class ComandoVaiTest {
 		this.partita = new Partita();
 		this.stanzaIniziale = new Stanza("stanzaIniziale");
 		this.comandoVai = new ComandoVai();
+		this.comandoVai.setIO(new IOConsole());
 		this.partita.setStanzaCorrente(stanzaIniziale);
 	}
 	

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -21,6 +22,7 @@ private static final String AttrezzoDaPosare = "attrezzoDaPosare";
 		this.partita = new Partita();
 		this.comandoPosa = new ComandoPosa();
 		this.attrezzoDaPosare = new Attrezzo(AttrezzoDaPosare,1);
+		this.comandoPosa.setIO(new IOConsole());
 		this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPosare);
 	}
 	

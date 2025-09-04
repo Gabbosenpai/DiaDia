@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.IOConsole;
+
 class FabbricaDiComandiFisarmonicaTest {
 
 	private FabbricaDiComandiFisarmonica fabbricaDiComandi;
@@ -55,7 +57,7 @@ class FabbricaDiComandiFisarmonicaTest {
 	}
 	
 	private void testaComando(String comandoDaEseguire, String comandoAtteso, String parametroDaDare) {
-		Comando comando = this.fabbricaDiComandi.costruisciComando(comandoDaEseguire);
+		Comando comando = this.fabbricaDiComandi.costruisciComando(comandoDaEseguire, new IOConsole());
 		if(parametroDaDare != null)
 			comando.setParametro(parametroDaDare);
 		assertEquals(comandoAtteso, comando.getNome());
