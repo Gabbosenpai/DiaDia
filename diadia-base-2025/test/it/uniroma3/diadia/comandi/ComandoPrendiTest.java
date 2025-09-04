@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -23,6 +24,7 @@ class ComandoPrendiTest {
 		this.partita = new Partita();
 		this.comandoPrendi = new ComandoPrendi();
 		this.attrezzoDaPrendere = new Attrezzo(AttrezzoDaPrendere,1);
+		this.comandoPrendi.setIO(new IOConsole());
 		this.partita.getStanzaCorrente().addAttrezzo(attrezzoDaPrendere);
 	}
 

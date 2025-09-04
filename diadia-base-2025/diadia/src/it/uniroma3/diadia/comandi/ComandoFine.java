@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
 /**
@@ -10,10 +11,12 @@ public class ComandoFine implements Comando {
 
 	static final private String NOME = "fine";
 	
+	private IO io;
+	
 	@Override
 	public void esegui(Partita partita) {
 		partita.setFinita();
-		System.out.println("Grazie di aver giocato!");
+		this.io.mostraMessaggio("Grazie di aver giocato!");
 
 	}
 
@@ -28,6 +31,12 @@ public class ComandoFine implements Comando {
 	@Override
 	public String getNome() {
 		return NOME;
+	}
+	
+	@Override
+	public void setIO(IO io) {
+		this.io = io;
+		
 	}
 
 }
