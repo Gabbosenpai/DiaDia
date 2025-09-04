@@ -3,15 +3,19 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
+/**
+ * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
+ * e ne stampa il nome, altrimenti stampa un messaggio di errore
+ */
+
 public class ComandoVai implements Comando {
 
+	static final private String NOME = "vai";
+	
 	private String direzione;
 
 	public ComandoVai() {}
-
-	/**
-	 * esecuzione del comando
-	 */	
+	
 	@Override
 	public void esegui(Partita partita) {
 		if(direzione==null)
@@ -33,6 +37,16 @@ public class ComandoVai implements Comando {
 	public void setParametro(String parametro) {
 		this.direzione = parametro;
 		
+	}
+
+	@Override
+	public String getParametro() {
+		return this.direzione;
+	}
+
+	@Override
+	public String getNome() {
+		return NOME;
 	}
 
 }
