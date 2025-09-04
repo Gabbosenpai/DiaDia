@@ -18,4 +18,12 @@ public class StanzaBuia extends Stanza {
 		return super.getDescrizione();
 	}
 	
+	public String getNomeAttrezzoLuce() {
+		return this.nomeAttrezzoLuce;
+	}
+	
+	public void setNomeAttrezoLuce(String nomeAttrezoLuce) {
+		this.nomeAttrezzoLuce = nomeAttrezoLuce;
+	}
+	
 }

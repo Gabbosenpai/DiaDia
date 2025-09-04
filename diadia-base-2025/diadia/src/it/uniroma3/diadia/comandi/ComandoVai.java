@@ -23,6 +23,7 @@ public class ComandoVai implements Comando {
 		if(direzione==null)
 			this.io.mostraMessaggio("Dove vuoi andare ?");
 		else {
+			Stanza corrente = partita.getStanzaCorrente();
 			Stanza prossimaStanza = null;
 			prossimaStanza = partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 			if (prossimaStanza == null)
@@ -30,7 +31,8 @@ public class ComandoVai implements Comando {
 			else {
 				partita.setStanzaCorrente(prossimaStanza);
 				int cfu = partita.getGiocatore().getCfu();
-				partita.getGiocatore().setCfu(--cfu);
+				if(!corrente.equals(prossimaStanza))
+					partita.getGiocatore().setCfu(--cfu);
 			}
 		}
 	}
