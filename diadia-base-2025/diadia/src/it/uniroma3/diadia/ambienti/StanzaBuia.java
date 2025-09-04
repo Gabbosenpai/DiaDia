@@ -26,4 +26,7 @@ public class StanzaBuia extends Stanza {
 		this.nomeAttrezzoLuce = nomeAttrezoLuce;
 	}
 	
+	public String getDescrizioneStanzaBuia() {
+		return DESCRIZIONE_STANZA_BUIA;
+	}
 }
