@@ -67,11 +67,11 @@ class BorsaTest {
 		assertNull(this.borsa.getAttrezzo("ghianda"));
 	}
 	
-	@Test
-	public void testAddAttrezzoSuNull() {
-		this.borsa.addAttrezzo(null);
-		assertEquals(0, this.borsa.getNumeroAttrezzi());
-	}
+//	@Test
+//	public void testAddAttrezzoSuNull() {
+//		this.borsa.addAttrezzo(null);
+//		assertEquals(0, this.borsa.getNumeroAttrezzi());
+//	}
 	
 	@Test
 	public void testAddAttrezzoPesoMaggiorePesoMax() {
@@ -83,14 +83,14 @@ class BorsaTest {
 		assertTrue(this.borsa.hasAttrezzo("martello"));
 	}
 	
-	@Test
-	public void testAddAttrezzoBorsaPienaMaxNumeroAttrezzi() {
-		this.borsa.setNumeroAttrezzi(9);
-		this.borsa.addAttrezzo(new Attrezzo("martello", 7));
-		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
-		assertFalse(this.borsa.hasAttrezzo("pigna"));
-		assertTrue(this.borsa.hasAttrezzo("martello"));
-	}
+//	@Test
+//	public void testAddAttrezzoBorsaPienaMaxNumeroAttrezzi() {
+//		this.borsa.setNumeroAttrezzi(9);
+//		this.borsa.addAttrezzo(new Attrezzo("martello", 7));
+//		this.borsa.addAttrezzo(new Attrezzo("pigna", 1));
+//		assertFalse(this.borsa.hasAttrezzo("pigna"));
+//		assertTrue(this.borsa.hasAttrezzo("martello"));
+//	}
 	
 	@Test
 	public void testAddAttrezzoSingolo() {

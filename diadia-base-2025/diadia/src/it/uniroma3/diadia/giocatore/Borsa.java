@@ -11,7 +11,6 @@ public class Borsa {
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
 
 	private List<Attrezzo> attrezzi;
-	private int numeroAttrezzi;
 	private int pesoMax;
 
 	public Borsa() {
@@ -20,19 +19,15 @@ public class Borsa {
 
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
-		this.attrezzi = new ArrayList<>(); // speriamo bastino...
-		this.numeroAttrezzi = 0;
+		this.attrezzi = new ArrayList<Attrezzo>(); // speriamo bastino...
 	}
 
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if(attrezzo == null)
 			return false;
-		if (this.numeroAttrezzi==10)
-			return false;
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
 		this.attrezzi.add(attrezzo);
-		this.numeroAttrezzi++;
 		return true;
 	}
 
@@ -42,14 +37,6 @@ public class Borsa {
 
 	public void setPesoMax(int pesoMax) {
 		this.pesoMax = pesoMax;
-	}
-
-	public int getNumeroAttrezzi() {
-		return this.numeroAttrezzi;
-	}
-
-	public void setNumeroAttrezzi(int numeroAttrezzi) {
-		this.numeroAttrezzi = numeroAttrezzi;
 	}
 
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
@@ -109,18 +96,16 @@ public class Borsa {
 	//	}
 
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
-		Attrezzo attrezzoDaRimuovere = null;
+		Attrezzo daRimuovere = null;
 		Iterator<Attrezzo> iteratore = this.attrezzi.iterator();
 		while(iteratore.hasNext()) {
-			Attrezzo a = iteratore.next();
-			if(a != null && a.getNome().equals(nomeAttrezzo)) {
-				attrezzoDaRimuovere = a;
-				this.numeroAttrezzi--;
+			daRimuovere = iteratore.next();
+			if(daRimuovere != null && daRimuovere.getNome().equals(nomeAttrezzo)) {
 				iteratore.remove();
-				break;
+				return daRimuovere;
 			}
 		}
-		return attrezzoDaRimuovere;
+		return null;
 	}
 
 

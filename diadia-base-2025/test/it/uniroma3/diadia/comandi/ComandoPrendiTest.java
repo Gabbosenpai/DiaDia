@@ -64,7 +64,7 @@ class ComandoPrendiTest {
 	
 	@Test
 	public void testComandoPrendiAttrezzoBorsaPiena() {
-		this.partita.getGiocatore().getBorsa().setNumeroAttrezzi(10);
+		this.partita.getGiocatore().getBorsa().setPesoMax(0);
 		this.comandoPrendi.setParametro(AttrezzoDaPrendere);
 		this.comandoPrendi.esegui(partita);
 		assertFalse(this.partita.getGiocatore().getBorsa().hasAttrezzo(AttrezzoDaPrendere));
