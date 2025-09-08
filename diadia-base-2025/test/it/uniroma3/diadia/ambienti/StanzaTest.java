@@ -60,19 +60,26 @@ class StanzaTest {
 	public void testImpostaStanzaAdiacenteDirezioneNull() {
 		Stanza adiacenteOvest = new Stanza("stanzaAdiacenteOvest");
 		this.stanza.impostaStanzaAdiacente(null, adiacenteOvest);
-		assertEquals(2, this.stanza.getNumeroStanzeAdiacenti());
+		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteStanzaNull() {
 		this.stanza.impostaStanzaAdiacente("ovest", null);
-		assertEquals(2, this.stanza.getNumeroStanzeAdiacenti());
+		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteParametriNull() {
 		this.stanza.impostaStanzaAdiacente(null, null);
-		assertEquals(2, this.stanza.getNumeroStanzeAdiacenti());
+		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
+	}
+	
+	@Test
+	public void testImpostaStanzaAdiacenteSuccesso() {
+		Stanza adiacenteOvest = new Stanza("stanzaAdiacenteOvest");
+		this.stanza.impostaStanzaAdiacente("ovest", adiacenteOvest);
+		assertEquals(adiacenteOvest, this.stanza.getStanzaAdiacente("ovest"));
 	}
 	
 	
