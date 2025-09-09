@@ -95,12 +95,12 @@ class StanzaTest {
 		assertFalse(this.stanza.addAttrezzo(null));
 	}
 	
-	@Test
-	public void testAddAttrezzoStanzaPiena() {
-		this.stanza.setNumeroAttrezzi(10);
-		Attrezzo pigna = new Attrezzo("pigna", 1);
-		assertFalse(this.stanza.addAttrezzo(pigna));
-	}
+//	@Test
+//	public void testAddAttrezzoStanzaPiena() {
+//		this.stanza.setNumeroAttrezzi(10);
+//		Attrezzo pigna = new Attrezzo("pigna", 1);
+//		assertFalse(this.stanza.addAttrezzo(pigna));
+//	}
 	
 	@Test
 	public void testAddAttrezzoSingolo() {

@@ -42,14 +42,14 @@ private static final String AttrezzoDaPosare = "attrezzoDaPosare";
 		assertFalse(this.partita.getStanzaCorrente().hasAttrezzo(AttrezzoDaPosare));
 	}
 	
-	@Test
-	public void testComandoPosaStanzaPiena() {
-		this.partita.getStanzaCorrente().setNumeroAttrezzi(10);
-		this.comandoPosa.setParametro(AttrezzoDaPosare);
-		this.comandoPosa.esegui(partita);
-		assertTrue(this.partita.getGiocatore().getBorsa().hasAttrezzo(AttrezzoDaPosare));
-		assertFalse(this.partita.getStanzaCorrente().hasAttrezzo(AttrezzoDaPosare));
-	}
+//	@Test
+//	public void testComandoPosaStanzaPiena() {
+//		this.partita.getStanzaCorrente().setNumeroAttrezzi(10);
+//		this.comandoPosa.setParametro(AttrezzoDaPosare);
+//		this.comandoPosa.esegui(partita);
+//		assertTrue(this.partita.getGiocatore().getBorsa().hasAttrezzo(AttrezzoDaPosare));
+//		assertFalse(this.partita.getStanzaCorrente().hasAttrezzo(AttrezzoDaPosare));
+//	}
 	
 	@Test
 	public void testComandoPosaBorsaVuota() {

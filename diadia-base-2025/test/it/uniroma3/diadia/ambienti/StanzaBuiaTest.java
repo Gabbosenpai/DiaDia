@@ -11,7 +11,7 @@ class StanzaBuiaTest {
 
 	private static final String DESCRIZIONE_STANZA = "Stanza\n" + 
 			"Uscite:\n" + 
-			"Attrezzi nella stanza: luce (1kg) ";
+			"Attrezzi nella stanza: [luce (1kg)]";
 	
 	private StanzaBuia stanzaBuia;
 	private Attrezzo luce;
