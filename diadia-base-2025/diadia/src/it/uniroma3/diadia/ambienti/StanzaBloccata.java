@@ -25,7 +25,7 @@ public class StanzaBloccata extends Stanza {
 	public String getDescrizione() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(super.getNome());
-		risultato.append("\nUscite: ");
+		risultato.append("\nUscite:");
 		for (String direzione : super.getDirezioni())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
