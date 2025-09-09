@@ -172,10 +172,6 @@ public class Stanza {
 		return direzioni;
 	}
 
-	public Map<String,Stanza> getStanzeAdiacenti() {
-		return this.stanzeAdiacenti;
-	}
-
 	public void setStanzeAdiacenti(Map<String,Stanza> stanzeAdiacenti) {
 		this.stanzeAdiacenti = stanzeAdiacenti;
 	}

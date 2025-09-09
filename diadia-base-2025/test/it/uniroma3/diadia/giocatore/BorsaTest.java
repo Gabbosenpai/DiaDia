@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -140,14 +143,44 @@ class BorsaTest {
 	
 	@Test
 	public void testRemoveAttrezzoConPiùAttrezzi() {
-		Attrezzo pigna = new Attrezzo("pigna", 1);
-		Attrezzo ghianda = new Attrezzo("ghianda", 2);
-		this.borsa.addAttrezzo(pigna);
-		this.borsa.addAttrezzo(ghianda);
+		this.fixture();
 		assertTrue(this.borsa.hasAttrezzo("pigna"));
 		assertTrue(this.borsa.hasAttrezzo("ghianda"));
-		assertEquals(pigna, this.borsa.removeAttrezzo("pigna"));
+		assertEquals(this.borsa.getAttrezzo("pigna"), this.borsa.removeAttrezzo("pigna"));
 		assertFalse(this.borsa.hasAttrezzo("pigna"));
 		assertTrue(this.borsa.hasAttrezzo("ghianda"));
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerPesoBorsaVuota() {
+		List<Attrezzo> vuota = this.borsa.getContenutoOrdinatoPerPeso();
+		assertTrue(vuota.isEmpty());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerPesoDiversoPeso() {
+		this.fixture();
+		List<Attrezzo> lista = this.borsa.getContenutoOrdinatoPerPeso();
+		Iterator<Attrezzo> it = lista.iterator(); 
+		assertEquals(1,it.next().getPeso());
+		assertEquals(2,it.next().getPeso());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerPesoStessoPeso() {
+		this.fixture();
+		this.borsa.addAttrezzo(new Attrezzo("superghianda", 2));
+		List<Attrezzo> lista = this.borsa.getContenutoOrdinatoPerPeso();
+		Iterator<Attrezzo> it = lista.iterator(); 
+		assertEquals("ghianda",it.next().getNome());
+		assertEquals("pigna",it.next().getNome());
+		assertEquals("superghianda",it.next().getNome());
+	}
+	
+	public void fixture() {
+		Attrezzo pigna = new Attrezzo("pigna", 2);
+		Attrezzo ghianda = new Attrezzo("ghianda", 1);
+		this.borsa.addAttrezzo(pigna);
+		this.borsa.addAttrezzo(ghianda);
 	}
 }

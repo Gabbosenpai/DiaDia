@@ -1,7 +1,9 @@
 package it.uniroma3.diadia.giocatore;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
@@ -98,6 +100,13 @@ public class Borsa {
 
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		return this.attrezzi.remove(nomeAttrezzo);
+	}
+	
+	public List<Attrezzo> getContenutoOrdinatoPerPeso(){
+		List<Attrezzo> ordinatoPerPeso = new ArrayList<>();
+		ordinatoPerPeso.addAll(this.attrezzi.values());
+		Collections.sort(ordinatoPerPeso, new ComparatoreAttrezziPerPeso());
+		return ordinatoPerPeso;
 	}
 
 
