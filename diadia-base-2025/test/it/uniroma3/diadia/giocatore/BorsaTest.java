@@ -5,8 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -175,6 +182,55 @@ class BorsaTest {
 		assertEquals("ghianda",it.next().getNome());
 		assertEquals("pigna",it.next().getNome());
 		assertEquals("superghianda",it.next().getNome());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerNomeBorsaVuota() {
+		SortedSet<Attrezzo> vuota = this.borsa.getContenutoOrdinatoPerNome();
+		assertTrue(vuota.isEmpty());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerNomeStessoNomeStessoPeso() {
+		fixture();
+		this.borsa.addAttrezzo(new Attrezzo("ghianda", 1));
+		SortedSet<Attrezzo> set = this.borsa.getContenutoOrdinatoPerNome();
+		Iterator<Attrezzo> it = set.iterator();
+		assertEquals("ghianda",it.next().getNome());
+		assertEquals("pigna",it.next().getNome());
+		assertFalse(it.hasNext());
+	}
+	
+	public void testGetContenutoRaggruppatoPerPesoBorsaVuota() {
+		Map<Integer, Set<Attrezzo>> vuota = this.borsa.getContenutoRaggruppatoPerPeso();
+		assertTrue(vuota.isEmpty());
+	}
+	
+	public void testGetContenutoRaggruppatoPerPesoDueAttrezziDiversoPeso() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		Attrezzo ghianda = new Attrezzo("ghianda", 1);
+		Attrezzo superghianda = new Attrezzo("superghianda", 2);
+		this.borsa.addAttrezzo(pigna);
+		this.borsa.addAttrezzo(ghianda);
+		this.borsa.addAttrezzo(superghianda);
+		Map<Integer, Set<Attrezzo>> peso2SetAttrezzi = new HashMap<Integer, Set<Attrezzo>>();
+		peso2SetAttrezzi.put(1, Collections.singleton(new Attrezzo("pigna", 1)));
+		peso2SetAttrezzi.put(1, Collections.singleton(new Attrezzo("ghianda", 1)));
+		peso2SetAttrezzi.put(2, Collections.singleton(new Attrezzo("superghianda", 2)));
+		assertEquals(peso2SetAttrezzi, this.borsa.getContenutoRaggruppatoPerPeso());
+		
+	}
+	
+	@Test
+	public void testGetSortedSetOrdinatoPerPeso() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		Attrezzo ghianda = new Attrezzo("ghianda", 1);
+		Attrezzo superghianda = new Attrezzo("superghianda", 2);
+		this.borsa.addAttrezzo(pigna);
+		this.borsa.addAttrezzo(ghianda);
+		this.borsa.addAttrezzo(superghianda);
+		SortedSet<Attrezzo> peso2SetAttrezzi = new TreeSet<>(Arrays.asList(new Attrezzo("pigna", 1),new Attrezzo("ghianda", 1), new Attrezzo("superghianda", 2)));
+		assertEquals(peso2SetAttrezzi, this.borsa.getSortedSetOrdinatoPerPeso());
 	}
 	
 	public void fixture() {
