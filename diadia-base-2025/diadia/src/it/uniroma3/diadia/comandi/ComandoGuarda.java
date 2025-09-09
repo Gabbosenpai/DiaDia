@@ -18,7 +18,7 @@ public class ComandoGuarda implements Comando {
 	public void esegui(Partita partita) {
 		this.io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		this.io.mostraMessaggio("CFU rimasti: " + partita.getGiocatore().getCfu());
-		this.io.mostraMessaggio(partita.getGiocatore().getBorsa().toString());
+		this.io.mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoOrdinatoPerPeso().toString());
 	}
 
 	@Override
