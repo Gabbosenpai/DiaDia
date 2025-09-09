@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -77,8 +78,12 @@ public class Stanza {
 	 * Restituisce la collezione di attrezzi presenti nella stanza.
 	 * @return la collezione di attrezzi nella stanza.
 	 */
-	public Map<String, Attrezzo> getAttrezzi() {
-		return this.attrezzi;
+	public Collection<Attrezzo> getAttrezzi() {
+		return this.attrezzi.values();
+	}
+
+	public Collection<Stanza> getAdiacenti() {
+		return this.stanzeAdiacenti.values();
 	}
 
 	/**
@@ -134,8 +139,14 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		this.attrezzi.remove(attrezzo.getNome());
-		return !this.attrezzi.containsValue(attrezzo);
+		Attrezzo rimosso = attrezzo;
+		if(rimosso == null)
+			return false;
+		rimosso = this.attrezzi.remove(attrezzo.getNome());
+		if(rimosso == null)
+			return false;
+		else
+			return true;
 	}
 
 	//	Versione senza compattamento dell'Array	

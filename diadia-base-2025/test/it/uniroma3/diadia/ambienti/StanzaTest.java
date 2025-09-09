@@ -116,13 +116,13 @@ class StanzaTest {
 	}
 	
 	@Test
-	public void testHasAttrezzoAttrezzoPresente() {
+	public void testHasAttrezzoPresente() {
 		this.stanza.addAttrezzo(new Attrezzo("pigna", 1));
 		assertTrue(this.stanza.hasAttrezzo("pigna"));
 	}
 	
 	@Test
-	public void testHasAttrezzoAttrezzoAssente() {
+	public void testHasAttrezzoAssente() {
 		assertFalse(this.stanza.hasAttrezzo("pigna"));
 	}
 	
@@ -142,5 +142,30 @@ class StanzaTest {
 	@Test
 	public void testGetAttrezzoAssente() {
 		assertNull(this.stanza.getAttrezzo("pigna"));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoSuccesso() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		this.stanza.addAttrezzo(pigna);
+		assertTrue(this.stanza.hasAttrezzo(pigna.getNome()));
+		assertTrue(this.stanza.removeAttrezzo(pigna));
+		assertFalse(this.stanza.hasAttrezzo(pigna.getNome()));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoAssente() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		assertFalse(this.stanza.hasAttrezzo(pigna.getNome()));
+		assertFalse(this.stanza.removeAttrezzo(pigna));
+	}
+	
+	@Test
+	public void testRemoveAttrezzoSuNull() {
+		Attrezzo pigna = new Attrezzo("pigna", 1);
+		this.stanza.addAttrezzo(pigna);
+		assertTrue(this.stanza.hasAttrezzo(pigna.getNome()));
+		assertFalse(this.stanza.removeAttrezzo(null));
+		assertTrue(this.stanza.hasAttrezzo(pigna.getNome()));
 	}
 }

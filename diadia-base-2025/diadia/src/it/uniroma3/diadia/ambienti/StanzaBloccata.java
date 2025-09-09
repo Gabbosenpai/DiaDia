@@ -34,7 +34,7 @@ public class StanzaBloccata extends Stanza {
 			risultato.append("\nPer passare serve posare l'attrezzo " + this.nomeAttrezzoSbloccante + " nella stanza!");
 		}
 		risultato.append("\nAttrezzi nella stanza: ");
-		risultato.append(super.getAttrezzi().values().toString());
+		risultato.append(super.getAttrezzi().toString());
 		return risultato.toString();
 	}
 
