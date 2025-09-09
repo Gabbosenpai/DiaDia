@@ -1,8 +1,16 @@
 package it.uniroma3.diadia.giocatore;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import org.w3c.dom.Attr;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -99,7 +107,54 @@ public class Borsa {
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		return this.attrezzi.remove(nomeAttrezzo);
 	}
-
+	
+	public List<Attrezzo> getContenutoOrdinatoPerPeso(){
+		List<Attrezzo> ordinatoPerPeso = new ArrayList<>();
+		ordinatoPerPeso.addAll(this.attrezzi.values());
+		Collections.sort(ordinatoPerPeso, new ComparatoreAttrezziPerPeso());
+		return ordinatoPerPeso;
+	}
+	
+	public SortedSet<Attrezzo> getContenutoOrdinatoPerNome(){
+		return new TreeSet<Attrezzo>(this.attrezzi.values());
+	}
+	
+	public Map<Integer, Set<Attrezzo>> getContenutoRaggruppatoPerPeso(){
+		Map<Integer, Set<Attrezzo>> gruppoPerPeso = new HashMap<Integer, Set<Attrezzo>>();
+		Set<Attrezzo> attrezziPerPeso;
+		for(Attrezzo a : this.attrezzi.values()) {
+			 if(gruppoPerPeso.containsKey(a.getPeso())) {
+				 attrezziPerPeso = gruppoPerPeso.get(a.getPeso());
+				 attrezziPerPeso.add(a);
+			 }
+			 else{
+				 attrezziPerPeso = new HashSet<Attrezzo>();
+				 attrezziPerPeso.add(a);
+				 gruppoPerPeso.put(a.getPeso(), attrezziPerPeso);
+			 }
+		}
+		return gruppoPerPeso;
+	}
+	
+	public Map<Integer, Set<Attrezzo>> getContenutoRaggruppatoPerPeso2(){
+		Map<Integer, Set<Attrezzo>> gruppoPerPeso = new HashMap<Integer, Set<Attrezzo>>();
+		Set<Attrezzo> attrezziPerPeso;
+		for(Attrezzo a : this.attrezzi.values()) {
+			attrezziPerPeso = gruppoPerPeso.get(a.getPeso());
+			if(attrezziPerPeso == null) {
+				attrezziPerPeso = new HashSet<Attrezzo>();
+				gruppoPerPeso.put(a.getPeso(), attrezziPerPeso);
+			}
+			attrezziPerPeso.add(a);
+		}
+		return gruppoPerPeso;
+	}
+	
+	public SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso(){
+		SortedSet<Attrezzo> sortedPerPeso = new TreeSet<Attrezzo>(new ComparatoreAttrezziPerPeso());
+		sortedPerPeso.addAll(this.attrezzi.values());
+		return sortedPerPeso;
+	}
 
 	public String toString() {
 		StringBuilder s = new StringBuilder();
