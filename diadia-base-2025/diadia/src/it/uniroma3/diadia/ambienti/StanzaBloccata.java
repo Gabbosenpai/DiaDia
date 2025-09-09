@@ -25,7 +25,7 @@ public class StanzaBloccata extends Stanza {
 	public String getDescrizione() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(super.getNome());
-		risultato.append("\nUscite: ");
+		risultato.append("\nUscite:");
 		for (String direzione : super.getDirezioni())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
@@ -34,10 +34,7 @@ public class StanzaBloccata extends Stanza {
 			risultato.append("\nPer passare serve posare l'attrezzo " + this.nomeAttrezzoSbloccante + " nella stanza!");
 		}
 		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : super.getAttrezzi()) {
-			if(attrezzo != null)
-				risultato.append(attrezzo.toString()+" ");
-		}
+		risultato.append(super.getAttrezzi().toString());
 		return risultato.toString();
 	}
 
