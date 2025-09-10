@@ -13,7 +13,7 @@ class ComandoVaiTest {
 
 	private Partita partita;
 	private Stanza stanzaIniziale;
-	private Comando comandoVai;
+	private AbstractComando comandoVai;
 	
 	@BeforeEach
 	public void setUp() {

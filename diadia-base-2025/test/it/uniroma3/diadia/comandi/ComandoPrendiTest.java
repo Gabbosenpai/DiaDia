@@ -15,7 +15,7 @@ class ComandoPrendiTest {
 	private static final String AttrezzoDaPrendere = "attrezzoDaPrendere";
 	
 	private Partita partita;
-	private Comando comandoPrendi;
+	private AbstractComando comandoPrendi;
 	private Attrezzo attrezzoDaPrendere;
 	
 	

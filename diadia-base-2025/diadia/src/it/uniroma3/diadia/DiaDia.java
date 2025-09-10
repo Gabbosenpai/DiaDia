@@ -1,7 +1,7 @@
 package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
@@ -58,7 +58,7 @@ public class DiaDia {
 	 * @throws Exception 
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire;
+		AbstractComando comandoDaEseguire;
 		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		comandoDaEseguire = factory.costruisciComando(istruzione, this.io);
 		comandoDaEseguire.esegui(this.partita);
