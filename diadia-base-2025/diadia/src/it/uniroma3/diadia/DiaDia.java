@@ -42,7 +42,7 @@ public class DiaDia {
 		this.io = io;
 	}
 
-	public void gioca() throws Exception {
+	public void gioca() {
 		String istruzione; 
 
 		this.io.mostraMessaggio(MESSAGGIO_BENVENUTO);		
@@ -57,7 +57,7 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 * @throws Exception 
 	 */
-	private boolean processaIstruzione(String istruzione) throws Exception {
+	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire;
 		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		comandoDaEseguire = factory.costruisciComando(istruzione, this.io);
@@ -70,7 +70,7 @@ public class DiaDia {
 	}
 
 
-	public static void main(String[] argc) throws Exception {
+	public static void main(String[] argc) {
 		IO io = new IOConsole();
 		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();
