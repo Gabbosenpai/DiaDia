@@ -96,6 +96,10 @@ public class Stanza {
 	public Collection<Stanza> getAdiacenti() {
 		return this.stanzeAdiacenti.values();
 	}
+	
+	public Map<String, Stanza> getStanzeAdiacenti(){
+		return this.stanzeAdiacenti;
+	}
 
 	/**
 	 * Mette un attrezzo nella stanza.

@@ -4,7 +4,7 @@ import it.uniroma3.diadia.Partita;
 
 public class Cane extends AbstractPersonaggio {
 	
-	private static final String MESSAGGIO_MORSO = 
+	public static final String MESSAGGIO_MORSO = 
 			"*Il cane ti morde la mano...(-1 CFU)*";
 
 	public Cane(String nome, String presentazione) {
@@ -18,5 +18,4 @@ public class Cane extends AbstractPersonaggio {
 		partita.getGiocatore().setCfu(cfu);
 		return MESSAGGIO_MORSO;
 	}
-
 }
