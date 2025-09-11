@@ -11,9 +11,9 @@ class StanzaBloccataTest {
 
 	private static final String STANZA_BLOCCATA = "Stanza Bloccata";
 	private static final String STANZA_DESTINAZIONE = "Stanza Destinazione";
-	private static final String DIREZIONE_BLOCCATA = "Direzione Bloccata";
-	private static final String DIREZIONE_LIBERA = "Direzione Libera";
-	private static final String NUOVA_DIREZIONE_LIBERA = "Nuova Direzione Libera";
+	private static final Direzione DIREZIONE_BLOCCATA = Direzione.NORD;
+	private static final Direzione DIREZIONE_LIBERA = Direzione.SUD;
+	private static final Direzione NUOVA_DIREZIONE_LIBERA = Direzione.EST;
 	private static final String NUOVA_STANZA_DESTINAZIONE = "Nuova Stanza Destinazione";
 	private static final String ATTREZZO_SBLOCCANTE = "chiave";
 	

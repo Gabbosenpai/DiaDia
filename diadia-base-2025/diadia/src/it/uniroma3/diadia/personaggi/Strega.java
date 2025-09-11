@@ -2,6 +2,7 @@ package it.uniroma3.diadia.personaggi;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
@@ -10,7 +11,7 @@ public class Strega extends AbstractPersonaggio {
 
 	private static final String MESSAGGIO_TELEPIPPO = 
 			"Hocus Pocus, il tuo pipo perde focus!";
-	
+
 	public Strega(String nome, String presentazione) {
 		super(nome, presentazione);
 	}

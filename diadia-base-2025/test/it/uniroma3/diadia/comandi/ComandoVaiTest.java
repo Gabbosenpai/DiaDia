@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 class ComandoVaiTest {
@@ -34,7 +35,7 @@ class ComandoVaiTest {
 	@Test
 	public void testComandoVaiStanzaPresente() {
 		Stanza stanzaSud = new Stanza("stanzaSud");
-		this.stanzaIniziale.impostaStanzaAdiacente("sud", stanzaSud);
+		this.stanzaIniziale.impostaStanzaAdiacente(Direzione.SUD, stanzaSud);
 		this.comandoVai.setParametro("sud");
 		this.comandoVai.esegui(partita);
 		assertEquals(stanzaSud, partita.getStanzaCorrente());
@@ -43,7 +44,7 @@ class ComandoVaiTest {
 	@Test
 	public void testComandoVaiStanzaPresenteDirezioneSbagliata() {
 		Stanza stanzaSud = new Stanza("stanzaSud");
-		this.stanzaIniziale.impostaStanzaAdiacente("sud", stanzaSud);
+		this.stanzaIniziale.impostaStanzaAdiacente(Direzione.SUD, stanzaSud);
 		this.comandoVai.setParametro("nord");
 		this.comandoVai.esegui(partita);
 		assertEquals(stanzaIniziale, partita.getStanzaCorrente());

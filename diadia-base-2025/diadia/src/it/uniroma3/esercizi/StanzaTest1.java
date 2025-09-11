@@ -1,5 +1,6 @@
 package it.uniroma3.esercizi;
 
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class StanzaTest1 {
@@ -8,9 +9,9 @@ public class StanzaTest1 {
 		
 		Stanza bar = new Stanza("bar");
 		Stanza mensa = new Stanza("mensa");
-		bar.impostaStanzaAdiacente("nord", mensa);
-		mensa.impostaStanzaAdiacente("sud", bar);
-		System.out.println(bar.getStanzaAdiacente("nord").getDescrizione());
-		System.out.println(mensa.getStanzaAdiacente("sud").getDescrizione());
+		bar.impostaStanzaAdiacente(Direzione.NORD, mensa);
+		mensa.impostaStanzaAdiacente(Direzione.SUD, bar);
+		System.out.println(bar.getStanzaAdiacente(Direzione.NORD).getDescrizione());
+		System.out.println(mensa.getStanzaAdiacente(Direzione.SUD).getDescrizione());
 	}
 }

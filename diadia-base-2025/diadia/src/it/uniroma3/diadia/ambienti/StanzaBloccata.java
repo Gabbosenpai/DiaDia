@@ -1,13 +1,11 @@
 package it.uniroma3.diadia.ambienti;
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
-
 public class StanzaBloccata extends Stanza {
 
-	private String direzioneBloccata;
+	private Direzione direzioneBloccata;
 	private String nomeAttrezzoSbloccante;
 
-	public StanzaBloccata(String nome, String direzioneBloccata, String nomeAttrezzoSbloccante) {
+	public StanzaBloccata(String nome, Direzione direzioneBloccata, String nomeAttrezzoSbloccante) {
 		super(nome);
 		this.direzioneBloccata = direzioneBloccata;
 		this.nomeAttrezzoSbloccante = nomeAttrezzoSbloccante;
@@ -15,7 +13,7 @@ public class StanzaBloccata extends Stanza {
 	}
 
 	@Override
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
 		if(direzione != null && direzione.equals(direzioneBloccata) && !super.hasAttrezzo(nomeAttrezzoSbloccante))
 			return this;	
 		return super.getStanzaAdiacente(direzione);
@@ -26,7 +24,7 @@ public class StanzaBloccata extends Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(super.getNome());
 		risultato.append("\nUscite:");
-		for (String direzione : super.getDirezioni())
+		for (Direzione direzione : super.getDirezioni())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
 		if(!super.hasAttrezzo(nomeAttrezzoSbloccante)) {
@@ -38,11 +36,11 @@ public class StanzaBloccata extends Stanza {
 		return risultato.toString();
 	}
 
-	public String getDirezioneBloccata() {
+	public Direzione getDirezioneBloccata() {
 		return this.direzioneBloccata;
 	}
 
-	public void setDirezioneBloccata(String direzioneBloccata) {
+	public void setDirezioneBloccata(Direzione direzioneBloccata) {
 		this.direzioneBloccata = direzioneBloccata;
 	}
 

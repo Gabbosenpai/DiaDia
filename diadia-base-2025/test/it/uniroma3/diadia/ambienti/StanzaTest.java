@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class StanzaTest {
@@ -22,8 +21,8 @@ class StanzaTest {
 		this.stanza = new Stanza("stanzaTest");
 		this.adiacenteSud = new Stanza("stanzaAdiacenteSud");
 		this.adiacenteEst = new Stanza("stanzaAdiacenteEst");
-		this.stanza.impostaStanzaAdiacente("sud", adiacenteSud);
-		this.stanza.impostaStanzaAdiacente("est", adiacenteEst);
+		this.stanza.impostaStanzaAdiacente(Direzione.SUD, adiacenteSud);
+		this.stanza.impostaStanzaAdiacente(Direzione.EST, adiacenteEst);
 	}
 	
 	@Test
@@ -31,63 +30,64 @@ class StanzaTest {
 		assertNull(this.stanza.getStanzaAdiacente(null));
 	}
 	
-	@Test
-	public void testGetStanzaAdiacenteDirezioneInesistente() {
-		assertNull(this.stanza.getStanzaAdiacente("Pippo"));
-	}
 	
+//	@Test(expected = IllegalArgumentException.class)
+//	public void testGetStanzaAdiacenteDirezioneInesistente() {
+//		assertNull(this.stanza.getStanzaAdiacente(Direzione.valueOf("sud-est")));
+//	}
+
 	@Test
 	public void testGetStanzaAdiacenteAssente() {
-		assertNull(this.stanza.getStanzaAdiacente("nord"));
+		assertNull(this.stanza.getStanzaAdiacente(Direzione.NORD));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacentePresente() {
-		assertEquals(this.adiacenteSud, this.stanza.getStanzaAdiacente("sud"));
+		assertEquals(this.adiacenteSud, this.stanza.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteCorrettaSud() {
-		assertEquals(this.adiacenteSud, this.stanza.getStanzaAdiacente("sud"));
+		assertEquals(this.adiacenteSud, this.stanza.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteCorrettaEst() {
-		assertEquals(this.adiacenteEst, this.stanza.getStanzaAdiacente("est"));
+		assertEquals(this.adiacenteEst, this.stanza.getStanzaAdiacente(Direzione.EST));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteDirezioneNull() {
 		Stanza adiacenteOvest = new Stanza("stanzaAdiacenteOvest");
 		this.stanza.impostaStanzaAdiacente(null, adiacenteOvest);
-		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
+		assertEquals(null, this.stanza.getStanzaAdiacente(Direzione.OVEST));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteStanzaNull() {
-		this.stanza.impostaStanzaAdiacente("ovest", null);
-		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
+		this.stanza.impostaStanzaAdiacente(Direzione.OVEST, null);
+		assertEquals(null, this.stanza.getStanzaAdiacente(Direzione.OVEST));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteParametriNull() {
 		this.stanza.impostaStanzaAdiacente(null, null);
-		assertEquals(null, this.stanza.getStanzaAdiacente("ovest"));
+		assertEquals(null, this.stanza.getStanzaAdiacente(Direzione.OVEST));
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteSuccesso() {
 		Stanza adiacenteOvest = new Stanza("stanzaAdiacenteOvest");
-		this.stanza.impostaStanzaAdiacente("ovest", adiacenteOvest);
-		assertEquals(adiacenteOvest, this.stanza.getStanzaAdiacente("ovest"));
+		this.stanza.impostaStanzaAdiacente(Direzione.OVEST, adiacenteOvest);
+		assertEquals(adiacenteOvest, this.stanza.getStanzaAdiacente(Direzione.OVEST));
 	}
 	
 	
 	@Test
 	public void testImpostaStanzaAdiacenteSovrascrittura() {
 		Stanza sovrascritta = new Stanza("stanza");
-		this.stanza.impostaStanzaAdiacente("est", sovrascritta);
-		assertEquals(sovrascritta, this.stanza.getStanzaAdiacente("est"));
+		this.stanza.impostaStanzaAdiacente(Direzione.EST, sovrascritta);
+		assertEquals(sovrascritta, this.stanza.getStanzaAdiacente(Direzione.EST));
 	}
 	
 	@Test

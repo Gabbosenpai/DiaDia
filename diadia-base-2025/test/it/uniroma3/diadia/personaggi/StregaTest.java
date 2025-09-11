@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class StregaTest {
 
-	private AbstractPersonaggio strega;
+	private Strega strega;
 	private Partita partita;
 	
 	@BeforeEach
@@ -56,12 +57,12 @@ class StregaTest {
 		moltiAttrezzi.addAttrezzo(new Attrezzo("pigna",1));
 		moltiAttrezzi.addAttrezzo(new Attrezzo("ghianda",2));
 		pochiAttrezzi.addAttrezzo(new Attrezzo("noce",0));
-		iniziale.impostaStanzaAdiacente("nord", pochiAttrezzi);
-		iniziale.impostaStanzaAdiacente("sud", moltiAttrezzi);
-		pochiAttrezzi.impostaStanzaAdiacente("est", moltiAttrezzi);
-		pochiAttrezzi.impostaStanzaAdiacente("sud", iniziale);
-		moltiAttrezzi.impostaStanzaAdiacente("nord", iniziale);
-		moltiAttrezzi.impostaStanzaAdiacente("ovest", pochiAttrezzi);
+		iniziale.impostaStanzaAdiacente(Direzione.NORD, pochiAttrezzi);
+		iniziale.impostaStanzaAdiacente(Direzione.SUD, moltiAttrezzi);
+		pochiAttrezzi.impostaStanzaAdiacente(Direzione.EST, moltiAttrezzi);
+		pochiAttrezzi.impostaStanzaAdiacente(Direzione.SUD, iniziale);
+		moltiAttrezzi.impostaStanzaAdiacente(Direzione.NORD, iniziale);
+		moltiAttrezzi.impostaStanzaAdiacente(Direzione.OVEST, pochiAttrezzi);
 		iniziale.setPersonaggio(strega);
 		this.partita.setStanzaCorrente(iniziale);
 	}
@@ -73,12 +74,12 @@ class StregaTest {
 		moltiAttrezzi.addAttrezzo(new Attrezzo("pigna",1));
 		moltiAttrezzi.addAttrezzo(new Attrezzo("ghianda",2));
 		pochiAttrezzi.addAttrezzo(new Attrezzo("noce",0));
-		iniziale.impostaStanzaAdiacente("nord", pochiAttrezzi);
-		iniziale.impostaStanzaAdiacente("sud", moltiAttrezzi);
-		pochiAttrezzi.impostaStanzaAdiacente("est", moltiAttrezzi);
-		pochiAttrezzi.impostaStanzaAdiacente("sud", iniziale);
-		moltiAttrezzi.impostaStanzaAdiacente("nord", iniziale);
-		moltiAttrezzi.impostaStanzaAdiacente("ovest", pochiAttrezzi);
+		iniziale.impostaStanzaAdiacente(Direzione.NORD, pochiAttrezzi);
+		iniziale.impostaStanzaAdiacente(Direzione.SUD, moltiAttrezzi);
+		pochiAttrezzi.impostaStanzaAdiacente(Direzione.EST, moltiAttrezzi);
+		pochiAttrezzi.impostaStanzaAdiacente(Direzione.SUD, iniziale);
+		moltiAttrezzi.impostaStanzaAdiacente(Direzione.NORD, iniziale);
+		moltiAttrezzi.impostaStanzaAdiacente(Direzione.OVEST, pochiAttrezzi);
 		moltiAttrezzi.setPersonaggio(strega);
 		this.partita.setStanzaCorrente(moltiAttrezzi);
 	}
