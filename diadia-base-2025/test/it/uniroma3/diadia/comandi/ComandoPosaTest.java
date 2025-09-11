@@ -14,7 +14,7 @@ class ComandoPosaTest {
 private static final String AttrezzoDaPosare = "attrezzoDaPosare";
 	
 	private Partita partita;
-	private Comando comandoPosa;
+	private AbstractComando comandoPosa;
 	private Attrezzo attrezzoDaPosare;
 
 	@BeforeEach

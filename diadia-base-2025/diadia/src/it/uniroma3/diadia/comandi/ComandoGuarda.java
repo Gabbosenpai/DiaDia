@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
 /* Controlla lo stato della partita
@@ -8,34 +7,18 @@ import it.uniroma3.diadia.Partita;
  * e la sua borsa
  */
 
-public class ComandoGuarda implements Comando {
+public class ComandoGuarda extends AbstractComando {
 
 	static final private String NOME = "guarda";
 	
-	private IO io;
+	public ComandoGuarda() {
+		super.setNome(NOME);
+	}
 	
 	@Override
 	public void esegui(Partita partita) {
-		this.io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-		this.io.mostraMessaggio("CFU rimasti: " + partita.getGiocatore().getCfu());
-		this.io.mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoOrdinatoPerPeso().toString());
-	}
-
-	@Override
-	public void setParametro(String parametro) {}
-
-	@Override
-	public String getParametro() {
-		return null;
-	}
-
-	@Override
-	public String getNome() {
-		return NOME;
-	}
-
-	@Override
-	public void setIO(IO io) {
-		this.io = io;
+		super.getIO().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+		super.getIO().mostraMessaggio("CFU rimasti: " + partita.getGiocatore().getCfu());
+		super.getIO().mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoOrdinatoPerPeso().toString());
 	}
 }
