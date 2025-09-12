@@ -19,6 +19,6 @@ public class ComandoGuarda extends AbstractComando {
 	public void esegui(Partita partita) {
 		super.getIO().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		super.getIO().mostraMessaggio("CFU rimasti: " + partita.getGiocatore().getCfu());
-		super.getIO().mostraMessaggio(partita.getGiocatore().getBorsa().getContenutoOrdinatoPerPeso().toString());
+		super.getIO().mostraMessaggio(partita.getGiocatore().getBorsa().toString());
 	}
 }

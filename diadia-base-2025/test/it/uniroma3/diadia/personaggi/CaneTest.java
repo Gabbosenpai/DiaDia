@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class CaneTest {
 
@@ -14,7 +15,7 @@ class CaneTest {
 	
 	@BeforeEach
 	public void setUp() {
-		this.cane = new Cane("Fido", "Woof Woof!");
+		this.cane = new Cane("Fido", "Woof Woof!", "osso",new Attrezzo("collare", 2));
 		this.partita = new Partita();
 	}
 	
