@@ -120,6 +120,9 @@ public class Stanza {
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
+		risultato.append("\nPersonaggio: ");
+		if (this.getPersonaggio() != null)
+			risultato.append(this.getPersonaggio().toString());
 		risultato.append("\nUscite:");
 		for (Direzione direzione : this.getDirezioni()) {
 			if (direzione!=null)

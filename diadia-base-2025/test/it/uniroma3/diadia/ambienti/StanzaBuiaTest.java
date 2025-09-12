@@ -10,6 +10,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 class StanzaBuiaTest {
 
 	private static final String DESCRIZIONE_STANZA = "Stanza\n" + 
+			"Personaggio: \n" + 
 			"Uscite:\n" + 
 			"Attrezzi nella stanza: [luce (1kg)]";
 	
